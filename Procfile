@@ -1,1 +1,1 @@
-web: gunicorn shoppro.wsgi
+web: gunicorn Django-Ecommerce-master.wsgi
