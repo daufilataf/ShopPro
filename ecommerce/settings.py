@@ -147,5 +147,7 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+STATICFILES_STORAGE='whitenoise.django.GzipManifestStaticFilesStorage'
+
 
 STRIPE_SECRET_KEY = 'sk_test_51Hnsv8BgDFnY9taqRdqM0JzTXs09NqoKEBvga2Jqb0ZzAIeOHZv65tSE6XlMjkDW8ueISLHoplZhfshlJuNsGqM900kX2U5o7q'
