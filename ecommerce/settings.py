@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'crispy_forms',
     'django_countries',
-    'main',
+x    'main',
 ]
 
 MIDDLEWARE = [
@@ -133,7 +133,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static_root")
 ]
-django_heroku.settings(locals())
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
@@ -151,3 +150,4 @@ STATICFILES_STORAGE='whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 STRIPE_SECRET_KEY = 'sk_test_51Hnsv8BgDFnY9taqRdqM0JzTXs09NqoKEBvga2Jqb0ZzAIeOHZv65tSE6XlMjkDW8ueISLHoplZhfshlJuNsGqM900kX2U5o7q'
+django_heroku.settings(locals())
