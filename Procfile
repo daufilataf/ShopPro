@@ -1,0 +1,1 @@
+web: gunicorn shoppro.wsgi:application --log-file -
