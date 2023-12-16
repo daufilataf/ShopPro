@@ -5,15 +5,15 @@ from django_countries.fields import CountryField
 # Create your models here.
 
 category_choices = (
-        ('SH','Shirts'),
-        ('SW','Sport Wears'),
-        ('OW','Outwears'),
-    )
+    ('SH', 'Shirts'),
+    ('SW', 'Sport Wears'),
+    ('OW', 'Outwears'),
+)
 label_choices = (
-        ('P','primary'),
-        ('S','secondary'),
-        ('D','danger')
-    )
+    ('P', 'primary'),
+    ('S', 'secondary'),
+    ('D', 'danger')
+)
 
 
 class Item(models.Model):
@@ -32,13 +32,13 @@ class Item(models.Model):
     def get_absolute_url(self):
         return reverse('main:product', kwargs={
             'slug': self.slug
-            })
+        })
 
     def get_add_to_cart_url(self):
         return reverse("main:add-to-cart", kwargs={
             'slug': self.slug
         })
-    
+
     def get_remove_from_cart_url(self):
         return reverse("main:remove-from-cart", kwargs={
             'slug': self.slug
@@ -47,14 +47,14 @@ class Item(models.Model):
 
 class OrderItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                            on_delete=models.CASCADE)
+                             on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
-    
+
     def __str__(self):
         return f"{self.quantity} of {self.item.title}"
-    
+
     def get_total_item_price(self):
         return self.quantity * self.item.price
 
@@ -72,7 +72,7 @@ class OrderItem(models.Model):
 
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                            on_delete=models.CASCADE)
+                             on_delete=models.CASCADE)
     ref_code = models.CharField(max_length=20)
     items = models.ManyToManyField(OrderItem)
     start_date = models.DateTimeField(auto_now_add=True)
@@ -89,7 +89,6 @@ class Order(models.Model):
     refund_requested = models.BooleanField(default=False)
     refund_granted = models.BooleanField(default=False)
 
-
     def __str__(self):
         return self.user.username
 
@@ -102,28 +101,28 @@ class Order(models.Model):
         return total
 
 
-
 class BillingAddress(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                            on_delete=models.CASCADE)
+                             on_delete=models.CASCADE)
     street_address = models.CharField(max_length=100)
     apartment_address = models.CharField(max_length=100)
     country = CountryField(multiple=True)
     zip_code = models.CharField(max_length=100)
-    
+
     def __str__(self):
         return self.user.username
 
 
 class Payment(models.Model):
     srtipe_charge_id = models.CharField(max_length=50)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.SET_NULL, blank=True, null=True)
     amount = models.FloatField()
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.user.username 
-    
+        return self.user.username
+
 
 class Coupon(models.Model):
     code = models.CharField(max_length=15)
@@ -141,5 +140,3 @@ class Refund(models.Model):
 
     def __str__(self):
         return f"{self.pk}"
-
-
