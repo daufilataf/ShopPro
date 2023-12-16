@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-from decouple import config  
+
 import django_heroku
 import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,7 +48,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'crispy_forms',
     'django_countries',
-x    'main',
+    'crispy_bootstrap4',
+    'main',
 ]
 
 MIDDLEWARE = [
@@ -146,7 +148,7 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-STATICFILES_STORAGE='whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 STRIPE_SECRET_KEY = 'sk_test_51Hnsv8BgDFnY9taqRdqM0JzTXs09NqoKEBvga2Jqb0ZzAIeOHZv65tSE6XlMjkDW8ueISLHoplZhfshlJuNsGqM900kX2U5o7q'
